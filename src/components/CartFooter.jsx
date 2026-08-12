@@ -34,39 +34,38 @@ export default function CartFooter({ cart, bcvRate, onClear }) {
     window.open(url, "_blank");
   };
 
-  return (
-    <div className="fixed bottom-0 left-0 right-0 p-4 bg-card border-t border-line shadow-2xl z-50 transition-all">
-      <div className="max-w-md mx-auto flex items-center justify-between gap-3">
-        {/* Lado Izquierdo: Precios e Información */}
+ return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 pointer-events-none">
+      <div className="max-w-md mx-auto bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-line flex items-center justify-between gap-3 pointer-events-auto">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold bg-primary text-white px-2 py-0.5 rounded-full">
-              {totalItems} {totalItems === 1 ? 'producto' : 'productos'}
-            </span>
-            <button 
-              onClick={onClear}
-              className="text-[11px] text-red-500 underline hover:text-red-700"
-            >
-              Vaciar
-            </button>
-          </div>
-          <p className="text-base font-bold text-ink mt-0.5">
-            Total: ${totalUSD.toFixed(2)}
+          <p className="text-xs font-medium text-ink-soft m-0">
+            {totalItems} {totalItems === 1 ? 'producto' : 'productos'}
           </p>
-          {bcvRate > 0 && (
-            <p className="text-xs text-ink-soft">
-              Bs. {totalVES.toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </p>
-          )}
+          <p className="text-base font-bold text-ink m-0">
+            ${totalUSD.toFixed(2)}{' '}
+            {bcvRate > 0 && (
+              <span className="text-xs font-normal text-ink-soft">
+                (~Bs. {totalVES.toFixed(2)})
+              </span>
+            )}
+          </p>
         </div>
 
-        {/* Lado Derecho: Botón directo a WhatsApp */}
-        <button
-          onClick={handleSendWhatsApp}
-          className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 px-5 rounded-2xl flex items-center gap-2 shadow-lg transition-transform active:scale-95"
-        >
-          <span>Pedir por WhatsApp</span>
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onClear}
+            className="p-2 text-ink-soft hover:text-red-500 transition-colors"
+            title="Vaciar carrito"
+          >
+            🗑️
+          </button>
+          <button
+            onClick={handleSendWhatsApp}
+            className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-2.5 px-4 rounded-xl text-sm flex items-center gap-2 shadow-lg shadow-green-500/20 transition-all active:scale-95"
+          >
+            <span>Pedir por WhatsApp</span>
+          </button>
+        </div>
       </div>
     </div>
   );
