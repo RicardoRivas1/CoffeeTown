@@ -47,28 +47,25 @@ export default function App() {
   const handleClearCart = () => setCart([]);
 
   return (
-    <div className="min-h-screen bg-bg text-ink pb-24">
-      <Header />
-      <SearchBar value={query} onChange={setQuery} />
-
-        <Filters 
-           categories={CATEGORIES} 
-           active={activeCat} 
-           onChange={setActiveCat} 
-        />
-      
-      <ProductGrid 
-        products={products} 
-        activeCat={activeCat} 
-        query={query} 
-        onAdd={handleAddToCart} 
-      />
-
-      <CartFooter 
-        cart={cart} 
-        bcvRate={bcvRate} 
-        onClear={handleClearCart} 
-      />
-    </div>
-  );
+  <div className="min-h-screen bg-[#FDF8F5] text-ink pb-28 max-w-md mx-auto shadow-2xl relative">
+    <Header />
+    <SearchBar value={query} onChange={setQuery} />
+    <Filters 
+      categories={CATEGORIES} 
+      active={activeCat} 
+      onChange={setActiveCat} 
+    />
+    <ProductGrid 
+      products={products} 
+      activeCat={activeCat} 
+      query={query} 
+      onAdd={handleAddToCart} 
+    />
+    <CartFooter 
+      cart={cart} 
+      bcvRate={bcvRate} 
+      onClear={handleClearCart} 
+    />
+  </div>
+);
 }
